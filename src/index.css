@@ -1,0 +1,179 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 222 47% 4%;
+    --foreground: 210 40% 98%;
+
+    --card: 222 47% 6%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 47% 6%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 263 70% 60%;
+    --primary-foreground: 210 40% 98%;
+    --primary-glow: 263 90% 75%;
+
+    --secondary: 173 80% 50%;
+    --secondary-foreground: 222 47% 4%;
+
+    --muted: 222 20% 12%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 263 70% 60%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 222 20% 12%;
+    --input: 222 20% 12%;
+    --ring: 263 70% 60%;
+
+    --radius: 0.75rem;
+
+    /* Premium gradients */
+    --gradient-start: 263 70% 60%;
+    --gradient-mid: 273 70% 55%;
+    --gradient-end: 173 80% 50%;
+    
+    /* Glass effect */
+    --glass-bg: 222 47% 6% / 0.7;
+    --glass-border: 210 40% 98% / 0.15;
+    
+    /* Shadows */
+    --shadow-primary: 263 70% 60% / 0.4;
+    --shadow-secondary: 173 80% 50% / 0.3;
+    --shadow-glow: 0 0 60px -15px;
+    
+    /* Animations */
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+  
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Premium gradient background */
+  .gradient-bg {
+    background: linear-gradient(135deg, hsl(var(--gradient-start)) 0%, hsl(var(--gradient-mid)) 50%, hsl(var(--gradient-end)) 100%);
+  }
+  
+  /* Enhanced glass morphism */
+  .glass {
+    background: hsl(var(--glass-bg));
+    backdrop-filter: blur(16px) saturate(180%);
+    border: 1px solid hsl(var(--glass-border));
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  }
+  
+  /* Animated gradient text */
+  .gradient-text {
+    background: linear-gradient(135deg, hsl(var(--gradient-start)) 0%, hsl(var(--gradient-mid)) 50%, hsl(var(--gradient-end)) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradient-shift 8s ease infinite;
+    background-size: 200% 200%;
+  }
+  
+  /* Enhanced hover glow */
+  .hover-glow {
+    transition: var(--transition-smooth);
+    position: relative;
+  }
+  
+  .hover-glow::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--secondary)) 100%);
+    border-radius: inherit;
+    opacity: 0;
+    transition: var(--transition-smooth);
+    z-index: -1;
+    filter: blur(20px);
+  }
+  
+  .hover-glow:hover::before {
+    opacity: 0.6;
+  }
+  
+  .hover-glow:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-glow) hsl(var(--shadow-primary));
+  }
+  
+  /* Floating animation */
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+  
+  /* Gradient shift animation */
+  @keyframes gradient-shift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  
+  /* Shimmer effect */
+  @keyframes shimmer {
+    0% {
+      background-position: -1000px 0;
+    }
+    100% {
+      background-position: 1000px 0;
+    }
+  }
+  
+  .shimmer {
+    animation: shimmer 3s infinite;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      hsl(var(--primary) / 0.1) 50%,
+      transparent 100%
+    );
+    background-size: 1000px 100%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
